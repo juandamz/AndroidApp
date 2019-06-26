@@ -42,8 +42,6 @@ public class Scanner extends AppCompatActivity {
                     //permission was not granted yet
                     requestCameraPermission();
                 }
-
-
             }
         });
 
