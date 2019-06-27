@@ -12,10 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LowInventory"></activity>
-        <activity android:name=".Inventory" />
-        <activity android:name=".ScanCodeActivity" />
-        <activity android:name=".Scanner" />
+        <activity android:name=".LowInventory"
+            android:parentActivityName=".Inventory">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="labrador.cse.usf.edu.signin.MainActivity"/>
+        </activity>
+        <activity android:name=".Inventory" ></activity>
+        <activity android:name=".ScanCodeActivity"
+            android:parentActivityName=".Inventory" />
+        <activity android:name=".Scanner"
+            android:parentActivityName=".Inventory"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

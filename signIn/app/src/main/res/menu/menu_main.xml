@@ -10,9 +10,16 @@
         android:title="action_search"
         app:showAsAction="always" />
 
-    <item android:id="@+id/action_settings"
+    <item
+        android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="100"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_logout"
+        android:title="logout"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+
 
 </menu>

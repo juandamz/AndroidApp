@@ -55,7 +55,9 @@
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password" />
+                    android:autoText="false"
+                    android:hint="Password"
+                    android:password="true" />
             </android.support.design.widget.TextInputLayout>
         </TableRow>
 
