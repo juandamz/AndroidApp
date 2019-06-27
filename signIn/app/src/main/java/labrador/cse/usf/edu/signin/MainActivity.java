@@ -29,7 +29,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity {
+public class  MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getName();
     private Button btnRequest;
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 int userID = user.getInt("UserID");
 //
                 if(userID > 0){
-                    startActivity(new Intent(getApplicationContext(), Scanner.class));
+                    startActivity(new Intent(getApplicationContext(), Inventory.class));
                 }
                 else{
                     Toast.makeText(getApplicationContext(),"Try again", Toast.LENGTH_LONG).show();//display the response on screen

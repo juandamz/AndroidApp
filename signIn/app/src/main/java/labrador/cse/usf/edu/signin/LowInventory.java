@@ -1,0 +1,16 @@
+package labrador.cse.usf.edu.signin;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class LowInventory extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_low_inventory);
+
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+}

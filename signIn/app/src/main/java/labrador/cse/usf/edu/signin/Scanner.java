@@ -45,6 +45,8 @@ public class Scanner extends AppCompatActivity {
             }
         });
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
     private void requestCameraPermission() {
         if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.CAMERA)){
