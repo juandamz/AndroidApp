@@ -1,9 +1,11 @@
 package labrador.cse.usf.edu.signin;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -33,11 +35,15 @@ public class  MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getName();
     private Button btnRequest;
+    private Button signUp;
 
     private RequestQueue mRequestQueue;
     private StringRequest mStringRequest;
     private TextView mTextView;
     String validate;
+
+    TextInputEditText username;
+    TextInputEditText passwordText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,14 +56,39 @@ public class  MainActivity extends AppCompatActivity {
                 sendAndRequestResponse();
             }
         });
+
+        signUp = findViewById(R.id.signUp);
+
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), createAccount.class));
+            }
+        });
+
+        username = (TextInputEditText) findViewById(R.id.email);
+        passwordText = (TextInputEditText) findViewById(R.id.password);
+        SharedPreferences prefs = getSharedPreferences("user_info", MODE_PRIVATE);
+        String restoredEmail = prefs.getString("name", null);
+        String restoredPass = prefs.getString("pass", null);
+        if(restoredEmail != null) {
+            String email = prefs.getString("name", "No name defined");
+            username.setText(email);
+        }
+        if(restoredPass != null) {
+            String password = prefs.getString("pass", "No name defined");
+            passwordText.setText(password);
+        }
+
+
     }
 
     private void sendAndRequestResponse() {
 
         EditText email = (EditText) findViewById(R.id.email);
-        String emailString = email.getText().toString();
+        final String emailString = email.getText().toString();
         EditText password = (EditText) findViewById(R.id.password);
-        String passwordString = password.getText().toString();
+        final String passwordString = password.getText().toString();
 
         String url = "http://www.juandavidmora.com/androidApp/login_validation.php?mobile=app&email=" + emailString + "&pass=" + passwordString + "&action_form=sign_in";
 
@@ -68,11 +99,7 @@ public class  MainActivity extends AppCompatActivity {
         mStringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
-
-             //   mTextView = (TextView) findViewById(R.id.validateResponse);
-                validation(response);
-             //   mTextView.setText(validate);
+                validation(response, emailString, passwordString);
 
                 //Toast.makeText(getApplicationContext(),"Response :" + response.toString(), Toast.LENGTH_LONG).show();//display the response on screen
 
@@ -88,7 +115,7 @@ public class  MainActivity extends AppCompatActivity {
     }
 
 
-    private void validation(String theResult){
+    private void validation(String theResult, String email, String password){
 
         JSONTokener theTokener = new JSONTokener(theResult);
         JSONArray loginInfo;
@@ -98,9 +125,9 @@ public class  MainActivity extends AppCompatActivity {
             if(loginInfo != null){
                 JSONObject user = loginInfo.getJSONObject(0);
                 int userID = user.getInt("UserID");
-//
+
                 if(userID > 0){
-                    startActivity(new Intent(getApplicationContext(), Inventory.class));
+                    sendMessage(userID, email, password);
                 }
                 else{
                     Toast.makeText(getApplicationContext(),"Try again", Toast.LENGTH_LONG).show();//display the response on screen
@@ -110,6 +137,19 @@ public class  MainActivity extends AppCompatActivity {
         }catch (JSONException e){
             // Log.e(INNER_TAG, e.getMessage());
         }
+    }
+
+    /* Called when the user clicks the Send button */
+    public void sendMessage(int userId, String email, String password) {
+        //Save username and password
+        SharedPreferences.Editor editor = getSharedPreferences("user_info", MODE_PRIVATE).edit();
+        editor.putString("name", email);
+        editor.putString("pass", password);
+        editor.putInt("UserId", userId);
+        editor.apply();
+
+        Intent intent = new Intent( getApplicationContext() , Inventory.class);
+        startActivity(intent);
     }
 
     @Override

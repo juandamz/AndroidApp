@@ -4,21 +4,14 @@
     tools:context="labrador.cse.usf.edu.signin.MainActivity">
 
     <item
-        android:id="@+id/action_search"
-        android:icon="@android:drawable/ic_menu_search"
-        android:orderInCategory="0"
-        android:title="action_search"
+        android:id="@+id/action_scan"
+        android:orderInCategory="101"
+        android:title="Price Lookup"
         app:showAsAction="always" />
-
-    <item
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
     <item
         android:id="@+id/action_logout"
         android:title="logout"
-        android:orderInCategory="100"
+        android:orderInCategory="102"
         app:showAsAction="always" />
 
 

@@ -18,6 +18,7 @@ import android.widget.Toast;
 public class Scanner extends AppCompatActivity {
 
     public static TextView resultTextView;
+    public static TextView resultTextView2;
     private int CAMERA_PERMISSION_CODE = 1;
     Button scan_btn;
     @Override
@@ -26,6 +27,7 @@ public class Scanner extends AppCompatActivity {
         setContentView(R.layout.activity_scanner);
 
         resultTextView = findViewById(R.id.result_text);
+        resultTextView2 = findViewById(R.id.result_text2);
         scan_btn = findViewById(R.id.btn_scan);
 
         scan_btn.setOnClickListener(new View.OnClickListener() {

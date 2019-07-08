@@ -7,25 +7,48 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_bg"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LowInventory"
-            android:parentActivityName=".Inventory">
+        <activity
+            android:name=".addProd"
+            android:label="@string/title_activity_add_prod"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".EditProduct"
+            android:label="@string/title_activity_edit_product"
+            android:parentActivityName=".Inventory"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".createAccount"
+            android:label="@string/title_activity_create_account"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LowInventory"
+            android:parentActivityName=".Inventory"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="labrador.cse.usf.edu.signin.MainActivity"/>
+                android:value="labrador.cse.usf.edu.signin.Inventory" />
         </activity>
-        <activity android:name=".Inventory" ></activity>
-        <activity android:name=".ScanCodeActivity"
+        <activity
+            android:name=".Inventory"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ScanCodeActivity"
             android:parentActivityName=".Inventory" />
-        <activity android:name=".Scanner"
-            android:parentActivityName=".Inventory"></activity>
+        <activity
+            android:name=".Scanner"
+            android:parentActivityName=".Inventory"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
